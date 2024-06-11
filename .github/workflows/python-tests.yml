@@ -1,9 +1,6 @@
 name: Tasks Python Tests
 
-on:
-  push:
-    branches:
-      - master
+on: [push]
 
 jobs:
   test:
