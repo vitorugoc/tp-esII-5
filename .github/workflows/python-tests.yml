@@ -8,16 +8,18 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: [3.8, 3.9, 3.10, 3.11]
 
     steps:
     - name: Check out repository
       uses: actions/checkout@v3
 
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
+    - name: Configura o ambiente Python
+      uses: actions/setup-python@v2
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: '3.x'
+
+    - name: Define o paht PYTHONPATH
+      run: echo "PYTHONPATH=$PWD" >> $GITHUB_ENV
 
     - name: Run tests
       run: python -m unittest discover -s . -p 'test_*.py'
